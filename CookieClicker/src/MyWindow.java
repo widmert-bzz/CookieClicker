@@ -12,7 +12,8 @@ public class MyWindow extends JFrame {
         var panel = new JPanel();
         var cookieButton = new JButton();
         var grandmaButton = new JButton("Buy Grandma");
-        JLabel cookieCounter = new JLabel("0");
+        JLabel cookieCounter = new JLabel(String.valueOf(StandardData.COOKIES));
+        JLabel grandmaAmount = new JLabel("0");
 
         cookieButton.setBounds((StandardData.FRAME_WIDTH / 2) - (StandardData.BUTTON_WIDTH / 2),
                 (StandardData.FRAME_HEIGHT / 2) - (StandardData.BUTTON_HEIGHT / 2),
@@ -22,11 +23,14 @@ public class MyWindow extends JFrame {
                 StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT);
 
         cookieCounter.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y, 100, 20);
+        grandmaAmount.setBounds(grandmaButton.getX() - 30,grandmaButton.getY(), 100, 20);
 
         grandmaButton.setFocusPainted(false);
 
         panel.add(cookieButton);
         panel.add(cookieCounter);
+
+        panel.add(grandmaAmount);
         panel.add(grandmaButton);
 
         this.getContentPane().add(panel);
@@ -53,6 +57,22 @@ public class MyWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 StandardData.COOKIES++;
                 cookieCounter.setText(String.valueOf(StandardData.COOKIES));
+            }
+        });
+
+        grandmaButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(StandardData.COOKIES >= StandardData.GRANDMA_PRICE){
+                    StandardData.COOKIES -= (int) StandardData.GRANDMA_PRICE;
+                    cookieCounter.setText(String.valueOf(StandardData.COOKIES));
+                    StandardData.Grandma++;
+                    StandardData.GRANDMA_PRICE = StandardData.GRANDMA_PRICE * StandardData.PRICE_MULTIPLICATION;
+                    grandmaAmount.setText(String.valueOf(StandardData.Grandma));
+                }
+
+
             }
         });
 

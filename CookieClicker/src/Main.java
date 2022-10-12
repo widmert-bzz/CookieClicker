@@ -5,9 +5,6 @@ public class Main {
 
         Window window = new MyWindow();
 
-        while (true){
-
-        }
 
 
     }
