@@ -1,16 +1,18 @@
-import java.awt.Window;
-
 public class Main {
+    static MyWindow window;
+
     public static void main(String[] args) {
-
-        Window window = new MyWindow();
-
-
-
+        window = new MyWindow();
     }
 
-    public static void AddCookie(int cookies){
+    public static void addCookie(int cookies){
         StandardData.COOKIES += cookies;
+        window.cookieCounter.setText(String.valueOf(StandardData.COOKIES));
+    }
+
+    public static void eatCookie(int cookies){
+        StandardData.COOKIES -= cookies;
+        window.cookieCounter.setText(String.valueOf(StandardData.COOKIES));
     }
 
 
