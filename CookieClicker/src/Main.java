@@ -5,14 +5,16 @@ public class Main {
 
         Window window = new MyWindow();
 
+        while (true){
+
+        }
+
+
     }
 
     public static void AddCookie(int cookies){
         StandardData.COOKIES += cookies;
-        System.out.println(StandardData.COOKIES);
     }
 
-    public static void buttonPressed(){
-        AddCookie(1);
-    }
+
 }

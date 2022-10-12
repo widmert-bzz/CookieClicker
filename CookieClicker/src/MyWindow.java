@@ -10,13 +10,24 @@ public class MyWindow extends JFrame {
         setSize(StandardData.FRAME_WIDTH, StandardData.FRAME_HEIGHT);
 
         var panel = new JPanel();
-        var button = new JButton();
+        var cookieButton = new JButton();
+        var grandmaButton = new JButton("Buy Grandma");
+        JLabel cookieCounter = new JLabel("0");
 
-        button.setBounds((StandardData.FRAME_WIDTH / 2) - (StandardData.BUTTON_WIDTH / 2),
+        cookieButton.setBounds((StandardData.FRAME_WIDTH / 2) - (StandardData.BUTTON_WIDTH / 2),
                 (StandardData.FRAME_HEIGHT / 2) - (StandardData.BUTTON_HEIGHT / 2),
                 StandardData.BUTTON_WIDTH, StandardData.BUTTON_HEIGHT);
 
-        panel.add(button);
+        grandmaButton.setBounds((StandardData.FRAME_WIDTH - (StandardData.SHOP_BUTTON_WIDTH + 20)), 10,
+                StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT);
+
+        cookieCounter.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y, 100, 20);
+
+        grandmaButton.setFocusPainted(false);
+
+        panel.add(cookieButton);
+        panel.add(cookieCounter);
+        panel.add(grandmaButton);
 
         this.getContentPane().add(panel);
 
@@ -27,23 +38,25 @@ public class MyWindow extends JFrame {
             Image image = imageIcon.getImage(); // transform it
             Image newimg = image.getScaledInstance(StandardData.BUTTON_WIDTH, StandardData.BUTTON_HEIGHT, Image.SCALE_FAST);
             imageIcon = new ImageIcon(newimg);
-            button.setIcon(imageIcon);
+            cookieButton.setIcon(imageIcon);
         }
 
         panel.setLayout(null);
         setVisible(true);
-        button.setOpaque(false);
-        button.setContentAreaFilled(false);
-        button.setBorderPainted(false);
+        cookieButton.setOpaque(false);
+        cookieButton.setContentAreaFilled(false);
+        cookieButton.setBorderPainted(false);
 
-        button.addActionListener(new ActionListener() {
+        cookieButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.buttonPressed();
+                StandardData.COOKIES++;
+                cookieCounter.setText(String.valueOf(StandardData.COOKIES));
             }
         });
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
 }
