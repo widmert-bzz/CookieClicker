@@ -87,7 +87,7 @@ public class MyWindow extends JFrame {
         t.schedule(new TimerTask() {
             @Override
             public void run() {
-                StandardData.cps = 2*((StandardData.clicks1 + StandardData.clicks2 + StandardData.clicks3) / 3.0);
+                StandardData.cps = 2 * ((StandardData.clicks1 + StandardData.clicks2 + StandardData.clicks3) / 3.0);
                 StandardData.clicks3 = StandardData.clicks2;
                 StandardData.clicks2 = StandardData.clicks1;
                 StandardData.clicks1 = StandardData.clicksLast;
@@ -109,9 +109,12 @@ public class MyWindow extends JFrame {
     }
 
     private static void setButtonBounds(JButton cookieButton) {
+
         cookieButton.setBounds((StandardData.FRAME_WIDTH / 2) - (StandardData.BUTTON_WIDTH / 2),
                 (StandardData.FRAME_HEIGHT / 2) - (StandardData.BUTTON_HEIGHT / 2),
-                StandardData.BUTTON_WIDTH, StandardData.BUTTON_HEIGHT);
+                (StandardData.BUTTON_WIDTH), (StandardData.BUTTON_HEIGHT));
+
+
     }
 
 

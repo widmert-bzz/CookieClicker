@@ -4,8 +4,8 @@ public class StandardData {
 
     public static final double MULTIPLICATION = 1.15;
 
-    public static final int BUTTON_WIDTH = 300;
-    public static final int BUTTON_HEIGHT = 300;
+    public static final int BUTTON_WIDTH = 350;
+    public static final int BUTTON_HEIGHT = 350;
 
     public static final int SHOP_BUTTON_WIDTH = 120;
 
