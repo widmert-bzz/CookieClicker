@@ -26,8 +26,8 @@ public class Item {
         buyButton.setBounds((StandardData.FRAME_WIDTH - (StandardData.SHOP_BUTTON_WIDTH + 10)), height,
                 StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT);
         label.setBounds(buyButton.getX() - 30, buyButton.getY() + 4, 100, 20);
-        label2.setBounds(buyButton.getX() - 105, buyButton.getY() + 4, 100, 20);
-        label2.setText("price: " + price);
+        label2.setBounds(buyButton.getX() - 150, buyButton.getY() + 4, 100, 20);
+        label2.setText("cost: " + price);
     }
 
     public void buyItem() {
