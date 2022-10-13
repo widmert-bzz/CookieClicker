@@ -7,6 +7,7 @@ import java.util.TimerTask;
 public class MyWindow extends JFrame {
 
     public JLabel cookieCounter;
+    public JLabel cookiesPerSecond;
 
     public MyWindow() {
         var panel = new JPanel();
@@ -16,12 +17,12 @@ public class MyWindow extends JFrame {
 
         //creating Items
         items.add(new Item("grandma", 20, 0.3, this, 1.02));
-        items.add(new Item("machine", 300, 1.5, this, 1.05));
-        items.add(new Item("mine", 1500, 5, this, 1.08));
-        items.add(new Item("factory", 5000, 10, this, 1.1));
+        items.add(new Item("machine", 300, 5, this, 1.05));
+        items.add(new Item("mine", 1500, 20, this, 1.08));
+        items.add(new Item("factory", 5000, 100, this, 1.1));
 
 
-        addBounds(panel,items);
+        addBounds(panel, items);
 
         setTitle(StandardData.FRAME_NAME);
         setSize(StandardData.FRAME_WIDTH, StandardData.FRAME_HEIGHT);
@@ -29,13 +30,17 @@ public class MyWindow extends JFrame {
         var cookieButton = new JButton();
 
         cookieCounter = new JLabel(String.valueOf(StandardData.COOKIES));
+        cookiesPerSecond = new JLabel("0/s");
 
 
         setButtonBounds(cookieButton);
 
         cookieCounter.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y, 100, 20);
+        cookiesPerSecond.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y + 20, 100, 20);
+
 
         panel.add(cookieButton);
+        panel.add(cookiesPerSecond);
         panel.add(cookieCounter);
 
         this.getContentPane().add(panel);
@@ -89,12 +94,11 @@ public class MyWindow extends JFrame {
         }
     }
 
-    private static void setButtonBounds(JButton cookieButton){
+    private static void setButtonBounds(JButton cookieButton) {
         cookieButton.setBounds((StandardData.FRAME_WIDTH / 2) - (StandardData.BUTTON_WIDTH / 2),
                 (StandardData.FRAME_HEIGHT / 2) - (StandardData.BUTTON_HEIGHT / 2),
                 StandardData.BUTTON_WIDTH, StandardData.BUTTON_HEIGHT);
     }
-
 
 
 }

@@ -12,7 +12,7 @@ public class Item {
     JButton buyButton = new JButton();
     MyWindow window;
 
-    Item(String name, int price, double moneyPerSecound, MyWindow window, double multiplicationValue){
+    Item(String name, int price, double moneyPerSecound, MyWindow window, double multiplicationValue) {
 
         this.price = price;
         this.moneyPerSecound = moneyPerSecound;
@@ -28,21 +28,26 @@ public class Item {
 
         buyButton.setBounds((StandardData.FRAME_WIDTH - (StandardData.SHOP_BUTTON_WIDTH + 10)), height,
                 StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT);
-        label.setBounds(buyButton.getX() - 30,buyButton.getY() + 4, 100, 20);
-        label2.setBounds(buyButton.getX() - 105,buyButton.getY() + 4, 100, 20);
+        label.setBounds(buyButton.getX() - 30, buyButton.getY() + 4, 100, 20);
+        label2.setBounds(buyButton.getX() - 105, buyButton.getY() + 4, 100, 20);
         label2.setText("price: " + price);
     }
 
-    public void buyItem(){
+    public void buyItem() {
 
-        if(StandardData.COOKIES >= price){
+        if (StandardData.COOKIES >= price) {
             Main.eatCookie(price);
             counterNumberOfItem++;
             label.setText(String.valueOf(counterNumberOfItem));
-            price = (int) (price * multiplicationValue) + 1;
+            price = (int) ((price * multiplicationValue) + 1.4);
             label2.setText("price: " + price);
+            calculateCookiesPerSecond();
         }
 
+    }
+
+    private void calculateCookiesPerSecond() {
+        StandardData.cookiesPerSecond += moneyPerSecound;
     }
 
 

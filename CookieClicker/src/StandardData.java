@@ -16,5 +16,7 @@ public class StandardData {
 
     public static long COOKIES = 0;
 
+    public static double cookiesPerSecond = 0;
+
 
 }
