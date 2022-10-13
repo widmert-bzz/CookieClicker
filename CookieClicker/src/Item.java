@@ -5,22 +5,19 @@ public class Item {
     int price;
     double moneyPerSecound;
     int counterNumberOfItem = 0;
-
-    double multiplicationValue;
     JLabel label = new JLabel("0");
     JLabel label2 = new JLabel();
     JButton buyButton = new JButton();
     MyWindow window;
 
-    Item(String name, int price, double moneyPerSecound, MyWindow window, double multiplicationValue) {
+    Item(String name, int price, double moneyPerSecound, MyWindow window) {
 
         this.price = price;
         this.moneyPerSecound = moneyPerSecound;
         this.window = window;
-        this.multiplicationValue = multiplicationValue;
 
         buyButton.setFocusPainted(false);
-        buyButton.setText("Buy " + name);
+        buyButton.setText(name);
         buyButton.addActionListener(e -> buyItem());
     }
 
@@ -39,7 +36,7 @@ public class Item {
             Main.eatCookie(price);
             counterNumberOfItem++;
             label.setText(String.valueOf(counterNumberOfItem));
-            price = (int) ((price * multiplicationValue) + 1.4);
+            price = (int) ((price * StandardData.MULTIPLICATION));
             label2.setText("price: " + price);
             calculateCookiesPerSecond();
         }

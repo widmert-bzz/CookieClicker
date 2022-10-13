@@ -16,11 +16,12 @@ public class MyWindow extends JFrame {
 
 
         //creating Items
-        items.add(new Item("grandma", 20, 0.3, this, 1.02));
-        items.add(new Item("machine", 300, 5, this, 1.05));
-        items.add(new Item("mine", 1500, 20, this, 1.08));
-        items.add(new Item("factory", 5000, 100, this, 1.1));
-
+        items.add(new Item("Clicker", 15, 0.1, this));
+        items.add(new Item("Grandma", 100, 1, this));
+        items.add(new Item("Farm", 1100, 8, this));
+        items.add(new Item("Mine", 12000, 47, this));
+        items.add(new Item("Factory", 130000, 260, this));
+        items.add(new Item("Bank", 1400000, 1400, this));
 
         addBounds(panel, items);
 
@@ -32,16 +33,14 @@ public class MyWindow extends JFrame {
         cookieCounter = new JLabel(String.valueOf(StandardData.COOKIES));
         cookiesPerSecond = new JLabel("0/s");
 
-
         setButtonBounds(cookieButton);
 
         cookieCounter.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y, 100, 20);
         cookiesPerSecond.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y + 20, 100, 20);
 
-
-        panel.add(cookieButton);
         panel.add(cookiesPerSecond);
         panel.add(cookieCounter);
+        panel.add(cookieButton);
 
         this.getContentPane().add(panel);
 
@@ -62,10 +61,12 @@ public class MyWindow extends JFrame {
         cookieButton.setBorderPainted(false);
 
         cookieButton.addActionListener(e -> {
+            StandardData.clicksLast++;
             StandardData.COOKIES++;
             cookieCounter.setText(String.valueOf(StandardData.COOKIES));
         });
 
+        //Update 0.1s
         java.util.Timer t = new Timer();
         t.schedule(new TimerTask() {
             @Override
@@ -78,8 +79,21 @@ public class MyWindow extends JFrame {
                 for (int i = 0; i < items.size(); i++) {
                     items.get(i).setBounds(10 + i * 35);
                 }
+
             }
-        }, 0, 200);
+        }, 0, 100);
+
+        java.util.Timer t2 = new Timer();
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                StandardData.cps = 2*((StandardData.clicks1 + StandardData.clicks2 + StandardData.clicks3) / 3.0);
+                StandardData.clicks3 = StandardData.clicks2;
+                StandardData.clicks2 = StandardData.clicks1;
+                StandardData.clicks1 = StandardData.clicksLast;
+                StandardData.clicksLast = 0;
+            }
+        }, 0, 500);
 
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);

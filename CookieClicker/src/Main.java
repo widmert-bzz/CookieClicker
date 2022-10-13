@@ -26,13 +26,11 @@ public class Main {
     }
 
     public static void addGeneratedCookies(ArrayList<Item> items) {
-
         double millisecounds = currentTimeMillis();
-
-        BigDecimal bd = BigDecimal.valueOf(StandardData.cookiesPerSecond);
+        BigDecimal bd = BigDecimal.valueOf(StandardData.cookiesPerSecond + StandardData.cps);
         window.cookiesPerSecond.setText(bd.setScale(1, RoundingMode.HALF_UP) + "/s");
         for (Item item : items) {
-            amountOfCookies += item.moneyPerSecound * item.counterNumberOfItem * 0.2;
+            amountOfCookies += item.moneyPerSecound * item.counterNumberOfItem * 0.1;
         }
         if (amountOfCookies >= 1) {
             addCookie((int) amountOfCookies);

@@ -2,6 +2,8 @@ public class StandardData {
     public static int FRAME_WIDTH = 800;
     public static int FRAME_HEIGHT = 800;
 
+    public static final double MULTIPLICATION = 1.15;
+
     public static final int BUTTON_WIDTH = 300;
     public static final int BUTTON_HEIGHT = 300;
 
@@ -18,5 +20,10 @@ public class StandardData {
 
     public static double cookiesPerSecond = 0;
 
+    public static double cps = 0;
 
+    public static int clicksLast = 0;
+    public static int clicks1 = 0;
+    public static int clicks2 = 0;
+    public static int clicks3 = 0;
 }
