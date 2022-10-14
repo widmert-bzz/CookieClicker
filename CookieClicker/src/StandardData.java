@@ -1,4 +1,7 @@
 public class StandardData {
+
+    public static final boolean reset = false;
+
     public static int FRAME_WIDTH = 800;
     public static int FRAME_HEIGHT = 800;
 

@@ -2,7 +2,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
-import static java.lang.System.currentTimeMillis;
 
 public class Main {
     static MyWindow window;
@@ -11,6 +10,9 @@ public class Main {
 
     public static void main(String[] args) {
         window = new MyWindow();
+        if(!StandardData.reset){
+            SaveFiles.openGameData();
+        }
     }
 
     public static void addCookie(int cookies) {

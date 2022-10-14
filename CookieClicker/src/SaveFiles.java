@@ -3,7 +3,9 @@ import java.util.ArrayList;
 
 public class SaveFiles {
 
-    public static void saveData(ArrayList<Item> items){
+    public static int counter = 0;
+
+    public static void saveData(ArrayList<Item> items) {
         String data = "";
         for (Item item : items) {
             data += (item.price + ",");
@@ -22,30 +24,36 @@ public class SaveFiles {
         }
     }
 
-    public static void openData(ArrayList<Item> items){
+    public static void openItemData(Item item) {
         String data = "";
 
         try {
             BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\widme\\OneDrive\\Dokumente\\GitHub\\CookieClicker\\CookieClicker\\src\\resources\\data.txt"));
             data = br.readLine();
-            for (Item item :
-                    items) {
-                String[] datalist = data.split(",");
-                for (int i = 0; i < (datalist.length - 3); i++) {
-                    String[] itemdata = datalist[i].split("/");
-                    item.price = Integer.parseInt(itemdata[0]);
-                    item.counterNumberOfItem = Integer.parseInt(itemdata[1]);
-                }
-                StandardData.COOKIES = Long.parseLong(datalist[datalist.length - 1]);
-                StandardData.cps = Double.parseDouble(datalist[datalist.length - 2]);
-            }
-
-
+            String[] datalist = data.split("/");
+            String[] itemdata = datalist[counter].split(",");
+            item.price = Integer.parseInt(itemdata[0]);
+            item.counterNumberOfItem = Integer.parseInt(itemdata[1]);
 
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        counter++;
+    }
 
+    public static void openGameData(){
+        String data = "";
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\widme\\OneDrive\\Dokumente\\GitHub\\CookieClicker\\CookieClicker\\src\\resources\\data.txt"));
+            data = br.readLine();
+            String[] datalist = data.split("/");
+            StandardData.COOKIES = Long.parseLong(datalist[datalist.length-2]);
+            StandardData.cookiesPerSecond = Double.parseDouble(datalist[datalist.length-1]);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

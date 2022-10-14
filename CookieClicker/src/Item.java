@@ -12,13 +12,21 @@ public class Item {
 
     Item(String name, int price, double moneyPerSecound, MyWindow window) {
 
+
         this.price = price;
         this.moneyPerSecound = moneyPerSecound;
         this.window = window;
 
+        //run without next line to reset
+        if(!StandardData.reset){
+            SaveFiles.openItemData(this);
+        }
+
+
         buyButton.setFocusPainted(false);
         buyButton.setText(name);
         buyButton.addActionListener(e -> buyItem());
+        setPriceAndNumberText();
     }
 
     public void setBounds(int height) {
@@ -27,7 +35,7 @@ public class Item {
                 StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT);
         label.setBounds(buyButton.getX() - 30, buyButton.getY() + 4, 100, 20);
         label2.setBounds(buyButton.getX() - 150, buyButton.getY() + 4, 100, 20);
-        label2.setText("cost: " + price);
+        setPriceAndNumberText();
     }
 
     public void buyItem() {
@@ -35,12 +43,16 @@ public class Item {
         if (StandardData.COOKIES >= price) {
             Main.eatCookie(price);
             counterNumberOfItem++;
-            label.setText(String.valueOf(counterNumberOfItem));
             price = (int) ((price * StandardData.MULTIPLICATION));
-            label2.setText("price: " + price);
             calculateCookiesPerSecond();
+            setPriceAndNumberText();
         }
 
+    }
+
+    public void setPriceAndNumberText(){
+        label2.setText("price: " + price);
+        label.setText(String.valueOf(counterNumberOfItem));
     }
 
     private void calculateCookiesPerSecond() {
