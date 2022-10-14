@@ -5,6 +5,8 @@ public class SaveFiles {
 
     public static int counter = 0;
 
+    private static String saveFile = (new File("").getAbsolutePath()) + "/CookieClicker/src/resources/data.txt";
+
     public static void saveData(ArrayList<Item> items) {
         String data = "";
         for (Item item : items) {
@@ -15,7 +17,7 @@ public class SaveFiles {
         data += StandardData.cookiesPerSecond;
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\widme\\OneDrive\\Dokumente\\GitHub\\CookieClicker\\CookieClicker\\src\\resources\\data.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(saveFile));
             bw.write(data);
             System.out.println(data);
             bw.close();
@@ -27,8 +29,10 @@ public class SaveFiles {
     public static void openItemData(Item item) {
         String data = "";
 
+
+
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\widme\\OneDrive\\Dokumente\\GitHub\\CookieClicker\\CookieClicker\\src\\resources\\data.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(saveFile));
             data = br.readLine();
             String[] datalist = data.split("/");
             String[] itemdata = datalist[counter].split(",");
@@ -46,7 +50,7 @@ public class SaveFiles {
         String data = "";
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\widme\\OneDrive\\Dokumente\\GitHub\\CookieClicker\\CookieClicker\\src\\resources\\data.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(saveFile));
             data = br.readLine();
             String[] datalist = data.split("/");
             StandardData.COOKIES = Long.parseLong(datalist[datalist.length-2]);
