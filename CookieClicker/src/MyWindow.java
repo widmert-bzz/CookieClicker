@@ -9,10 +9,11 @@ public class MyWindow extends JFrame {
     public JLabel cookieCounter;
     public JLabel cookiesPerSecond;
 
+    public static ArrayList<Item> items = new ArrayList<>();
+
     public MyWindow() {
         var panel = new JPanel();
 
-        ArrayList<Item> items = new ArrayList<>();
 
 
         //creating Items
@@ -96,6 +97,13 @@ public class MyWindow extends JFrame {
         }, 0, 500);
 
 
+        //before closing
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+
+            public void run() {
+                SaveFiles.saveData(items);
+            }
+        }));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 

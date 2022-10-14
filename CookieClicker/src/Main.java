@@ -11,8 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
         window = new MyWindow();
-
-
     }
 
     public static void addCookie(int cookies) {
@@ -26,9 +24,12 @@ public class Main {
     }
 
     public static void addGeneratedCookies(ArrayList<Item> items) {
-        double millisecounds = currentTimeMillis();
         BigDecimal bd = BigDecimal.valueOf(StandardData.cookiesPerSecond + StandardData.cps);
-        window.cookiesPerSecond.setText(bd.setScale(1, RoundingMode.HALF_UP) + "/s");
+        try{
+            window.cookiesPerSecond.setText(bd.setScale(1, RoundingMode.HALF_UP) + "/s");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         for (Item item : items) {
             amountOfCookies += item.moneyPerSecound * item.counterNumberOfItem * 0.1;
         }
