@@ -53,7 +53,7 @@ public class SaveFiles {
             BufferedReader br = new BufferedReader(new FileReader(saveFile));
             data = br.readLine();
             String[] datalist = data.split("/");
-            StandardData.COOKIES = Long.parseLong(datalist[datalist.length-2]);
+            Main.addCookie(Long.parseLong(datalist[datalist.length-2]));
             StandardData.cookiesPerSecond = Double.parseDouble(datalist[datalist.length-1]);
 
         } catch (IOException e) {

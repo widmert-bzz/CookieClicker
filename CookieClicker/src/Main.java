@@ -15,7 +15,7 @@ public class Main {
         }
     }
 
-    public static void addCookie(int cookies) {
+    public static void addCookie(long cookies) {
         StandardData.COOKIES += cookies;
         window.cookieCounter.setText(String.valueOf(StandardData.COOKIES));
     }
