@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class Item {
 
@@ -12,6 +13,11 @@ public class Item {
 
     Item(String name, int price, double moneyPerSecound, MyWindow window) {
 
+        label.setForeground(Color.white);
+        label2.setForeground(Color.white);
+        label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        label2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+
 
         this.price = price;
         this.moneyPerSecound = moneyPerSecound;
@@ -23,9 +29,27 @@ public class Item {
         }
 
 
+        java.net.URL imgURL = getClass().getResource("./resources/ButtonTexture.png");
+
+        if (imgURL != null) {
+            var imageIcon = new ImageIcon(imgURL);
+            Image image = imageIcon.getImage(); // transform it
+            Image newimg = image.getScaledInstance(StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT, Image.SCALE_SMOOTH);
+            imageIcon = new ImageIcon(newimg);
+            buyButton.setIcon(imageIcon);
+        }
+
+
         buyButton.setFocusPainted(false);
         buyButton.setText(name);
+        buyButton.setForeground(Color.white);
+        buyButton.setBorderPainted(false);
+        buyButton.setHorizontalTextPosition(JButton.CENTER);
+        buyButton.setVerticalTextPosition(JButton.CENTER);
         buyButton.addActionListener(e -> buyItem());
+        buyButton.setOpaque(false);
+        buyButton.setContentAreaFilled(false);
+
         setPriceAndNumberText();
     }
 
@@ -34,7 +58,7 @@ public class Item {
         buyButton.setBounds((StandardData.FRAME_WIDTH - (StandardData.SHOP_BUTTON_WIDTH + 10)), height,
                 StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT);
         label.setBounds(buyButton.getX() - 30, buyButton.getY() + 4, 100, 20);
-        label2.setBounds(buyButton.getX() - 150, buyButton.getY() + 4, 100, 20);
+        label2.setBounds(buyButton.getX() - 170, buyButton.getY() + 4, 100, 20);
         setPriceAndNumberText();
     }
 
@@ -51,7 +75,7 @@ public class Item {
     }
 
     public void setPriceAndNumberText(){
-        label2.setText("price: " + price);
+        label2.setText("Cost: " + price);
         label.setText(String.valueOf(counterNumberOfItem));
     }
 
