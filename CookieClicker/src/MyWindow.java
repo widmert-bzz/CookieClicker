@@ -11,18 +11,23 @@ public class MyWindow extends JFrame {
 
     public static ArrayList<Item> items = new ArrayList<>();
 
+    public Image image;
+
     public MyWindow() {
         var panel = new JPanel();
-
+        panel.setBackground(new Color(35, 42, 54));
 
 
         //creating Items
-        items.add(new Item("Clicker", 15, 0.1, this));
+        items.add(new Item("Cursor", 15, 0.1, this));
         items.add(new Item("Grandma", 100, 1, this));
         items.add(new Item("Farm", 1100, 8, this));
         items.add(new Item("Mine", 12000, 47, this));
         items.add(new Item("Factory", 130000, 260, this));
         items.add(new Item("Bank", 1400000, 1400, this));
+        items.add(new Item("Temple", 20000000, 7800, this));
+        items.add(new Item("Wizard", 330000000, 44000, this));
+
 
         addBounds(panel, items);
 
@@ -34,14 +39,22 @@ public class MyWindow extends JFrame {
         cookieCounter = new JLabel(String.valueOf(StandardData.COOKIES));
         cookiesPerSecond = new JLabel("0/s");
 
+        cookieCounter.setForeground(Color.white);
+        cookiesPerSecond.setForeground(Color.white);
+
+
+        cookieCounter.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        cookiesPerSecond.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
         setButtonBounds(cookieButton);
 
-        cookieCounter.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y, 100, 20);
-        cookiesPerSecond.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y + 20, 100, 20);
+        cookieCounter.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y, 500, 50);
+        cookiesPerSecond.setBounds(StandardData.TEXT_X, StandardData.TEXT_Y + 50, 100, 20);
 
         panel.add(cookiesPerSecond);
         panel.add(cookieCounter);
         panel.add(cookieButton);
+        panel.setLayout(null);
 
         this.getContentPane().add(panel);
 
@@ -49,13 +62,13 @@ public class MyWindow extends JFrame {
 
         if (imgURL != null) {
             var imageIcon = new ImageIcon(imgURL);
-            Image image = imageIcon.getImage(); // transform it
+            image = imageIcon.getImage(); // transform it
             Image newimg = image.getScaledInstance(StandardData.BUTTON_WIDTH, StandardData.BUTTON_HEIGHT, Image.SCALE_FAST);
             imageIcon = new ImageIcon(newimg);
             cookieButton.setIcon(imageIcon);
         }
 
-        panel.setLayout(null);
+
         setVisible(true);
         cookieButton.setOpaque(false);
         cookieButton.setContentAreaFilled(false);
@@ -65,6 +78,7 @@ public class MyWindow extends JFrame {
             StandardData.clicksLast++;
             StandardData.COOKIES++;
             cookieCounter.setText(String.valueOf(StandardData.COOKIES));
+
         });
 
         //Update 0.1s

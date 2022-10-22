@@ -2,8 +2,8 @@ public class StandardData {
 
     public static final boolean reset = false;
 
-    public static int FRAME_WIDTH = 800;
-    public static int FRAME_HEIGHT = 800;
+    public static int FRAME_WIDTH = 1200;
+    public static int FRAME_HEIGHT = 900;
 
     public static final double MULTIPLICATION = 1.15;
 
@@ -14,7 +14,7 @@ public class StandardData {
 
     public static final int SHOP_BUTTON_HEIGHT = 30;
 
-    public static final int TEXT_Y = 5;
+    public static final int TEXT_Y = 0;
     public static final int TEXT_X = 10;
 
     public static final String FRAME_NAME = "Cookie Clicker";
