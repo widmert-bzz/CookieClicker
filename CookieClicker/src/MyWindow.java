@@ -54,6 +54,7 @@ public class MyWindow extends JFrame {
         panel.add(cookiesPerSecond);
         panel.add(cookieCounter);
         panel.add(cookieButton);
+        panel.setLayout(null);
 
         this.getContentPane().add(panel);
 
@@ -67,7 +68,7 @@ public class MyWindow extends JFrame {
             cookieButton.setIcon(imageIcon);
         }
 
-        panel.setLayout(null);
+
         setVisible(true);
         cookieButton.setOpaque(false);
         cookieButton.setContentAreaFilled(false);
