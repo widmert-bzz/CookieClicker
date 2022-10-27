@@ -29,15 +29,12 @@ public class Item {
         }
 
 
-        java.net.URL imgURL = getClass().getResource("./resources/ButtonTexture.png");
+        var imageIcon = new ImageIcon("C:\\Users\\widme\\OneDrive\\Dokumente\\GitHub\\CookieClicker\\CookieClicker\\src\\resources\\ButtonTexture.png");
+        Image image = imageIcon.getImage(); // transform it
+        Image newimg = image.getScaledInstance(StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT, Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(newimg);
+        buyButton.setIcon(imageIcon);
 
-        if (imgURL != null) {
-            var imageIcon = new ImageIcon(imgURL);
-            Image image = imageIcon.getImage(); // transform it
-            Image newimg = image.getScaledInstance(StandardData.SHOP_BUTTON_WIDTH, StandardData.SHOP_BUTTON_HEIGHT, Image.SCALE_SMOOTH);
-            imageIcon = new ImageIcon(newimg);
-            buyButton.setIcon(imageIcon);
-        }
 
 
         buyButton.setFocusPainted(false);
