@@ -13,6 +13,9 @@ public class MyWindow extends JFrame {
 
     public Image image;
 
+    public int counter = 1;
+
+
     public MyWindow() {
         var panel = new JPanel();
         panel.setBackground(new Color(35, 42, 54));
@@ -58,26 +61,34 @@ public class MyWindow extends JFrame {
 
         this.getContentPane().add(panel);
 
-        java.net.URL imgURL = getClass().getResource("./resources/cookie.png");
-
-        if (imgURL != null) {
-            var imageIcon = new ImageIcon(imgURL);
-            image = imageIcon.getImage(); // transform it
-            Image newimg = image.getScaledInstance(StandardData.BUTTON_WIDTH, StandardData.BUTTON_HEIGHT, Image.SCALE_FAST);
-            imageIcon = new ImageIcon(newimg);
-            cookieButton.setIcon(imageIcon);
-        }
+        var getimageIcon = new ImageIcon("C:\\Users\\widme\\OneDrive\\Dokumente\\GitHub\\CookieClicker\\CookieClicker\\src\\resources\\cookie.png");
+        image = getimageIcon.getImage(); // transform it
+        Image newimg = image.getScaledInstance(StandardData.BUTTON_WIDTH, StandardData.BUTTON_HEIGHT, Image.SCALE_FAST);
+        var imageIcon = new ImageIcon(newimg);
+        Image newimg2 = image.getScaledInstance(StandardData.BUTTON_WIDTH+10, StandardData.BUTTON_HEIGHT+10, Image.SCALE_FAST);
+        var imageIcon2 =  new ImageIcon(newimg2);
+        cookieButton.setIcon(imageIcon);
 
 
         setVisible(true);
         cookieButton.setOpaque(false);
         cookieButton.setContentAreaFilled(false);
         cookieButton.setBorderPainted(false);
+        cookieButton.setBorder(null);
+
 
         cookieButton.addActionListener(e -> {
+
             StandardData.clicksLast++;
             StandardData.COOKIES++;
             cookieCounter.setText(String.valueOf(StandardData.COOKIES));
+            if(counter == 1){
+                cookieButton.setIcon(imageIcon2);
+                counter++;
+            }else {
+                cookieButton.setIcon(imageIcon);
+                counter--;
+            }
 
         });
 
